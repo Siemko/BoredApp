@@ -4,20 +4,10 @@ import { SafeAreaView, Text, RefreshControl } from "react-native";
 import { ACTIVITY_TYPES } from "./activity-types";
 import { ScrollView } from "react-native-gesture-handler";
 
-async function getActivityForMultipleUsers() {
-  const response = await fetch(
-    `https://www.boredapi.com/api/activity?participants=${Math.floor(
-      Math.random() * 4 + 2,
-    )}`,
-  );
-  const data = await response.json();
-  return data;
-}
-
-export function MultipleUsers() {
+export function Activities({ queryKey, queryFn, children }) {
   const { status, data, error, isFetching, refetch } = useQuery(
-    "multipleUsers",
-    getActivityForMultipleUsers,
+    queryKey,
+    queryFn,
   );
 
   if (status === "error") {
@@ -27,8 +17,6 @@ export function MultipleUsers() {
   if (status === "loading") {
     return null;
   }
-
-  const participants = data.participants - 1;
   return (
     <SafeAreaView
       style={{
@@ -65,8 +53,7 @@ export function MultipleUsers() {
             color: "#6983aa",
           }}
         >
-          You will need {participants} friend{participants > 1 ? "s" : ""} to{" "}
-          {data.activity.toLowerCase()} if you are bored.
+          {children(data)}
         </Text>
       </ScrollView>
     </SafeAreaView>
