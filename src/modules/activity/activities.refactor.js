@@ -3,6 +3,7 @@ import { useQuery } from "react-query";
 import { SafeAreaView, Text, RefreshControl } from "react-native";
 import { ACTIVITY_TYPES } from "./activity-types";
 import { ScrollView } from "react-native-gesture-handler";
+import { css } from "@emotion/native";
 
 export function Activities({ queryKey, queryFn, children }) {
   const { status, data, error, isFetching, refetch } = useQuery(
@@ -19,17 +20,20 @@ export function Activities({ queryKey, queryFn, children }) {
   }
   return (
     <SafeAreaView
-      style={{
-        flex: 1,
-        backgroundColor: "#f4f4f4",
-      }}
+      style={css`
+        background-color: "#f4f4f4";
+        width: 100%;
+        height: 100%;
+      `}
     >
       <ScrollView
-        contentContainerStyle={{
-          flex: 1,
-          alignItems: "center",
-          justifyContent: "center",
-        }}
+        contentContainerStyle={css`
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+        `}
         refreshControl={
           <RefreshControl
             onRefresh={refetch}
@@ -38,20 +42,20 @@ export function Activities({ queryKey, queryFn, children }) {
         }
       >
         <Text
-          style={{
-            fontSize: 72,
-            marginBottom: 24,
-          }}
+          style={css`
+            font-size: 72px;
+            margin-bottom: 24px;
+          `}
         >
           {ACTIVITY_TYPES[data.type] || "🤸"}
         </Text>
         <Text
-          style={{
-            fontSize: 24,
-            padding: 10,
-            textAlign: "center",
-            color: "#6983aa",
-          }}
+          style={css`
+            font-size: 24px;
+            padding: 24px;
+            text-align: center;
+            color: #6983aa;
+          `}
         >
           {children(data)}
         </Text>
