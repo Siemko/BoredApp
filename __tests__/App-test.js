@@ -7,6 +7,7 @@ import React from "react";
 import App from "../App";
 
 // Note: test renderer must be required after react-native.
+import "react-native-gesture-handler";
 import renderer from "react-test-renderer";
 
 it("renders correctly", () => {

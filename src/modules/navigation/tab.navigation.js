@@ -6,6 +6,7 @@ import {
   getActivityForMultipleUsers,
 } from "../activity/activities.functions";
 import { Activities } from "../activity/activities.refactor";
+import { FriendList } from "../friend/friend.list";
 
 const Tab = createBottomTabNavigator();
 
@@ -51,6 +52,11 @@ export default function Navigation() {
           </Activities>
         )}
       </Tab.Screen>
+      <Tab.Screen
+        name="Friends"
+        options={tabOptions("🤝")}
+        component={FriendList}
+      />
     </Tab.Navigator>
   );
 }
