@@ -2,8 +2,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import * as React from "react";
 import { Text } from "react-native";
 import {
-  getActivityForSingleUser,
   getActivityForMultipleUsers,
+  getActivityForSingleUser,
 } from "../activity/activities.functions";
 import { Activities } from "../activity/activities.refactor";
 import { FriendList } from "../friend/friend.list";

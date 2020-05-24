@@ -4,10 +4,12 @@ import friends from "./friends";
 import { css } from "@emotion/native";
 import { Friend } from "./friend.item";
 import { FriendSearch } from "./friend.search";
+import useToast from "../toast/useToast";
 
 export function FriendList() {
   const [searchName, setSearchName] = React.useState("");
   const [friendList, setList] = React.useState(friends);
+  const { showToast } = useToast();
 
   React.useEffect(() => {
     searchName.length > 0
@@ -33,6 +35,7 @@ export function FriendList() {
           width: 100%;
           max-height: 50%;
         `}
+        onEndReached={() => showToast("No more friends!")}
         data={friendList}
         renderItem={Friend}
         keyExtractor={item => item.id}
