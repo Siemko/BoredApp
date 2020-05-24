@@ -17,12 +17,10 @@ export function ToastProvider({ children }) {
     defaultInitialState,
   );
 
-  console.log(visible);
-
   const contextValue = React.useMemo(
     () => ({
-      showToast(text) {
-        setState({ visible: true, text });
+      showToast(txt) {
+        setState({ visible: true, text: txt });
       },
       hideToast() {
         setState({ visible: false });
